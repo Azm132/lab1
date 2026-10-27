@@ -15,8 +15,9 @@ int main()
     cin >> b;
 
     double area = a * b;
+    //Нахождение периметра
     double perimeter = 2 * (a + b);
-    //dsdsdddsdsd
+    //Вывод информации
     cout << fixed << setprecision(2);
     cout << "Площадь: " << area << "\n";
     cout << "Периметр: " << perimeter << "\n";
