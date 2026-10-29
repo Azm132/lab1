@@ -1,37 +1,35 @@
 #include <iostream>
-
+#include <ctime>
+#include <windows.h>
 using namespace std;
 
 int main() {
-    double x, y;
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
 
-    cout << "Введите координату X: ";
-    cin >> x;
+    int day, month, year;
 
-    cout << "Введите координату Y: ";
-    cin >> y;
+    cout << "Введите день рождения: ";
+    cin >> day;
+    cout << "Введите месяц рождения: ";
+    cin >> month;
+    cout << "Введите год рождения: ";
+    cin >> year;
 
-    if (x == 0 && y == 0) {
-        cout << "Точка находится в начале координат" << endl;
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+
+    int current_day = ltm->tm_mday;
+    int current_month = ltm->tm_mon + 1;
+    int current_year = ltm->tm_year + 1900;
+
+    int age = current_year - year;
+
+    if (month > current_month || (month == current_month && day > current_day)) {
+        age--;
     }
-    else if (x == 0) {
-        cout << "Точка лежит на оси Y" << endl;
-    }
-    else if (y == 0) {
-        cout << "Точка лежит на оси X" << endl;
-    }
-    else if (x > 0 && y > 0) {
-        cout << "Точка находится в I четверти" << endl;
-    }
-    else if (x < 0 && y > 0) {
-        cout << "Точка находится во II четверти" << endl;
-    }
-    else if (x < 0 && y < 0) {
-        cout << "Точка находится в III четверти" << endl;
-    }
-    else {
-        cout << "Точка находится в IV четверти" << endl;
-    }
+
+    cout << "Ваш возраст: " << age << " лет" << endl;
 
     return 0;
 }

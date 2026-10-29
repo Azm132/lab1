@@ -1,36 +1,29 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <iomanip>
 #include <windows.h>
-
 using namespace std;
 
 int main() {
     SetConsoleCP(65001);
     SetConsoleOutputCP(65001);
-    srand(time(0));
 
-    int secret = rand() % 100 + 1;
-    int guess;
-    int attempts = 0;
+    double weight, height;
 
-    cout << "Я загадал число от 1 до 100. Попробуй угадать!" << endl;
+    cout << "Введите вес (кг): ";
+    cin >> weight;
 
-    do {
-        cout << "Твой вариант: ";
-        cin >> guess;
-        attempts++;
+    cout << "Введите рост (м, например 1.75): ";
+    cin >> height;
 
-        if (guess > secret) {
-            cout << "Меньше!" << endl;
-        }
-        else if (guess < secret) {
-            cout << "Больше!" << endl;
-        }
-        else {
-            cout << "Правильно! Ты угадал за " << attempts << " попыток." << endl;
-        }
-    } while (guess != secret);
+    if (weight <= 0 || height <= 0) {
+        cout << "Ошибка! Вес и рост должны быть положительными." << endl;
+        return 1;
+    }
+
+    double bmi = weight / (height * height);
+
+    cout << fixed << setprecision(1);
+    cout << "Ваш ИМТ: " << bmi << endl;
 
     return 0;
 }

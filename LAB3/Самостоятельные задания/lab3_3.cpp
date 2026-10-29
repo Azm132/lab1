@@ -1,42 +1,39 @@
 #include <iostream>
-#include <iomanip>  // для setprecision
-
+#include <string>
+#include <cwctype>
+#include <io.h>
+#include <fcntl.h>
+#include <windows.h>
 using namespace std;
 
 int main() {
-    double weight, height;
+    // Включаем поддержку Unicode в консоли
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+    _setmode(_fileno(stdin), _O_U16TEXT);
+    _setmode(_fileno(stdout), _O_U16TEXT);
 
-    cout << "Введите вес (кг): ";
-    cin >> weight;
+    wstring str;
+    int letters = 0, digits = 0, spaces = 0, puncts = 0;
 
-    cout << "Введите рост (м): ";
-    cin >> height;
+    wcout << L"Введите строку: ";
+    getline(wcin, str);
 
-    // Проверка корректности
-    if (weight <= 0 || height <= 0) {
-        cout << "Ошибка! Вес и рост должны быть положительными." << endl;
-        return 1;
+    for (wchar_t c : str) {
+        if (iswalpha(c))
+            letters++;
+        else if (iswdigit(c))
+            digits++;
+        else if (iswspace(c))
+            spaces++;
+        else if (iswpunct(c))
+            puncts++;
     }
 
-    // Расчёт ИМТ
-    double bmi = weight / (height * height);
-
-    cout << fixed << setprecision(2);
-    cout << "\nВаш ИМТ: " << bmi << endl;
-
-    // Определение категории
-    if (bmi < 18.5) {
-        cout << "Категория: Недостаточный вес" << endl;
-    }
-    else if (bmi < 25.0) {
-        cout << "Категория: Норма" << endl;
-    }
-    else if (bmi < 30.0) {
-        cout << "Категория: Избыточный вес" << endl;
-    }
-    else {
-        cout << "Категория: Ожирение" << endl;
-    }
+    wcout << L"Букв:             " << letters << endl;
+    wcout << L"Цифр:             " << digits << endl;
+    wcout << L"Пробелов:         " << spaces << endl;
+    wcout << L"Знаков препинания: " << puncts << endl;
 
     return 0;
 }
