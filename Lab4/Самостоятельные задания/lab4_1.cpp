@@ -8,9 +8,9 @@ using namespace std;
 int main() {
     SetConsoleCP(65001);
     SetConsoleOutputCP(65001);
-    srand(time(0));
+    srand(time(0));     // Инициализация генератора случайных чисел
 
-    int secret = rand() % 100 + 1;
+    int secret = rand() % 100 + 1;      // Загадываем число от 1 до 100
     int guess;
     int attempts = 0;
 
@@ -30,7 +30,7 @@ int main() {
         else {
             cout << "Правильно! Ты угадал за " << attempts << " попыток." << endl;
         }
-    } while (guess != secret);
+    } while (guess != secret);      // Цикл продолжается, пока число не угадано
 
     return 0;
 }

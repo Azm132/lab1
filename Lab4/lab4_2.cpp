@@ -7,7 +7,7 @@ int main()
     SetConsoleCP(65001);
     SetConsoleOutputCP(65001);
     double a, b, c;
-    double max1 = 0;
+    double max1 = 0;        // Переменная для хранения максимального значения
     
     cout << "Введите первое число" << endl;
     cin >> a;
@@ -18,7 +18,7 @@ int main()
     cout << "Введите третье число" << endl;
     cin >> c;
 
-    if (a>b && a>c)
+    if (a>b && a>c)     // Сравниваем числа с помощью логического И (&&)
     {
         max1 = a;
     }

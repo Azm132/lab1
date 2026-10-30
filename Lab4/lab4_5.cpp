@@ -9,7 +9,7 @@ int main()
     SetConsoleCP(65001);
     SetConsoleOutputCP(65001);
     double a, b;
-    char c;
+    char c;     // Переменная для хранения операции
 
     cout << "Введите первое число" << endl;
     cin >> a;
@@ -22,7 +22,7 @@ int main()
 
     cout << fixed << setprecision(2);
 
-    switch (c)
+    switch (c)      // Выбор действия с помощью switch
     {
         case '+':
             cout << "Ответ: " << a+b << endl;
